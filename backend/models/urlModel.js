@@ -1,6 +1,6 @@
 const mongoose =require('mongoose')
 
-const schema=mongoose.Schema()
+const schema=mongoose.Schema;
 
 const urlSchema=new schema({
 
@@ -9,6 +9,6 @@ const urlSchema=new schema({
     userID:{type:mongoose.Schema.Types.ObjectId,ref:'User'}
 
 })
-const Url=mongoose.models('Url',urlSchema)
+const Url=mongoose.model('Url',urlSchema)
 
 module.exports=Url
