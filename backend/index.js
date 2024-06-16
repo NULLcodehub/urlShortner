@@ -8,7 +8,9 @@ app.use(express.json())
 
 
 
-// routess
+// routes
+
+
 
 app.get('/',(req,res)=>{
     res.json("msg: backend running")
