@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express=require('express');
 const { default: mongoose } = require('mongoose');
+const shortID=require('short-uuid')
 
 const User=require('./models/userModel')
 const Url=require('./models/urlModel')
@@ -51,6 +52,20 @@ app.post('/login',async(req,res)=>{
         }
 })
 
+
+app.post('/shorten',async(req,res)=>{
+    try{
+        const {originalUrl}=req.body
+        const shortUrl=shortID.generate()
+
+        const newUrl=new Url({originalUrl,shortUrl})
+        await newUrl.save()
+        res.status(200).send('New Url saved')
+
+    }catch(err){
+        res.status(400).send(err.massage)
+    }
+})
 
 
 
