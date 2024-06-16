@@ -11,6 +11,4 @@ Join us in simplifying the web, one URL at a time!
 
 
 # ERD of URL-Shortener
-![Database ER diagram (crow's foot)](https://github.com/NULLcodehub/urlShortner/assets/94992938/43d23f42-2c2f-4df8-851c-b86133897dd9)
-
-
+![urlShortner](https://github.com/NULLcodehub/urlShortner/assets/94992938/dcf3144a-5dd2-40b4-978a-50b1685a2bf8)
