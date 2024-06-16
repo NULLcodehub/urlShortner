@@ -6,7 +6,7 @@ const urlSchema=new schema({
 
     originalUrl:{type:String,required:true},
     shortUrl:{type:String,required:true},
-    userID:{type:mongoose.Schema.Types.ObjectId,ref:'User'}
+    // userID:{type:mongoose.Schema.Types.ObjectId,ref:'User'}
 
 })
 const Url=mongoose.models('Url',urlSchema)
