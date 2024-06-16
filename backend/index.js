@@ -67,6 +67,24 @@ app.post('/shorten',async(req,res)=>{
     }
 })
 
+app.get('/:shortUrl',async (req,res)=>{
+    try{
+        const {shortUrl}=req.params
+        const urlData=await Url.findOne({shortUrl})
+        console.log(urlData)
+        if(urlData){
+            res.status(201).send(urlData.originalUrl)
+        }else{
+            res.status(400).send('url not found')
+        }
+
+    }catch(err){
+        res.status(400).send(err.massage)
+    }
+
+
+})
+
 
 
 
