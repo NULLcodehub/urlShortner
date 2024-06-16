@@ -33,6 +33,24 @@ app.post('/signup',async (req,res)=>{
 
 })
 
+app.post('/login',async(req,res)=>{
+
+        try{
+
+            const {email,password}=req.body;
+            const logOk= await User.findOne({email,password})
+            console.log(logOk)
+            if(logOk){
+                res.status(200).send('Log in')
+            }else{
+                res.status(401).send('User not found')
+            }
+
+        }catch(err){
+            res.status(400).send(err.massage)
+        }
+})
+
 
 
 
