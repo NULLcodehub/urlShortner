@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express=require('express');
+const bodyParser=require('body-parser')
 const { default: mongoose } = require('mongoose');
 const shortID=require('short-uuid')
 const cors=require('cors')
+const jwt=require('jsonwebtoken')
 
 const User=require('./models/userModel')
 const Url=require('./models/urlModel')
@@ -10,7 +12,12 @@ const Url=require('./models/urlModel')
 const app=express()
 
 app.use(express.json())
+app.use(bodyParser.json())
 app.use(cors())
+
+
+const key=process.env.SCERECT_KEY
+
 
 //data connection
 mongoose.connect(process.env.MONGODB_URI)
@@ -44,7 +51,9 @@ app.post('/login',async(req,res)=>{
             const logOk= await User.findOne({email,password})
             console.log(logOk)
             if(logOk){
-                res.status(200).send('Log in')
+                const token=jwt.sign({email:logOk.email},key,{expiresIn:'1h'})
+                // res.status(200).send('Log in')
+                res.json({token,email:logOk.email})
             }else{
                 res.status(401).send('User not found')
             }
