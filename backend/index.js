@@ -2,6 +2,7 @@ require('dotenv').config();
 const express=require('express');
 const { default: mongoose } = require('mongoose');
 const shortID=require('short-uuid')
+const cors=require('cors')
 
 const User=require('./models/userModel')
 const Url=require('./models/urlModel')
@@ -9,6 +10,7 @@ const Url=require('./models/urlModel')
 const app=express()
 
 app.use(express.json())
+app.use(cors())
 
 //data connection
 mongoose.connect(process.env.MONGODB_URI)
