@@ -2,9 +2,15 @@ import React from 'react';
 
 const HomePage = () => {
     return (
-        <div>
-            homepage
-        </div>
+        <>
+            <main className='bg-gray-200 h-screen' >
+                <section>
+                    
+                </section>
+
+            </main>
+        
+        </>
     );
 };
 

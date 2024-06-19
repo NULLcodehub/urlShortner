@@ -64,13 +64,14 @@ app.post('/login',async(req,res)=>{
 })
 
 
-app.post('/shorten',async(req,res)=>{
+app.post('/shortenurl',async(req,res)=>{
     try{
         const {originalUrl}=req.body
         const shortUrl=shortID.generate()
 
         const newUrl=new Url({originalUrl,shortUrl})
         await newUrl.save()
+        console.log(newUrl)
         res.status(200).send('New Url saved')
 
     }catch(err){
@@ -95,8 +96,6 @@ app.get('/:shortUrl',async (req,res)=>{
 
 
 })
-
-
 
 
 app.get('/',(req,res)=>{

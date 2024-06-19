@@ -17,7 +17,7 @@ const Navbar = () => {
                         <ul className='flex gap-4'>
                             {!isAuth && <Link to='/login'><li className='px-3 py-1'>Log in</li></Link> }
                             {!isAuth && <Link to='/signup'><li className='signup px-3 py-1'>Sign up</li></Link>}
-                            {isAuth && <li  className='signup px-3 py-1' onClick={logout}>logout</li>}
+                            {isAuth && <button  className='signup px-3 py-1' onClick={logout}>logout</button>}
                             
                         </ul>
                     </div>

@@ -1,7 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import useDebounce from '../../hooks/Debouncing';
 import axios from 'axios'
 import { AuthContext } from '../../contexts/AuthContext';
+import {useNavigate} from 'react-router-dom'
+
 import './Login.css'
 const Login = () => {
     const [email,setEmail]=useState("")
@@ -11,7 +13,7 @@ const Login = () => {
 
     const {login}=useContext(AuthContext)
 
-
+    const navigate=useNavigate()
 
 
 
@@ -25,13 +27,13 @@ const Login = () => {
                     email:emailDebounce,
                     password:passwordDebounce,
                 })
-                console.log(responce.data.token)
+                // console.log(responce.data.token)
                 // localStorage.setItem('token',responce.data.token)
                 login(responce.data.token)
 
                 setEmail('')
-                setPassword('')
-
+                setPassword('') 
+                navigate('/')
 
             }catch(err){
                 console.log(err)
