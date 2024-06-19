@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useDebounce from '../../hooks/Debouncing';
 import axios from 'axios'
-
+import { AuthContext } from '../../contexts/AuthContext';
 import './Login.css'
 const Login = () => {
     const [email,setEmail]=useState("")
@@ -9,28 +9,10 @@ const Login = () => {
     const emailDebounce=useDebounce(email,500)
     const passwordDebounce=useDebounce(password,500)
 
-    // useEffect(()=>{
-        
-    //     const logData= async(e)=>{
-    //         if(emailDebounce || passwordDebounce){
+    const {login}=useContext(AuthContext)
 
-    //             try{
-    //                 const responce=await axios.post('http://localhost:4000/login',{
-    //                 email:emailDebounce,
-    //                 password:passwordDebounce
-    //              });
 
-    //             console.log(responce.data)
 
-    //             }catch(err){
-    //                 console.log(err)
-    //             }
-
-    //         }
-    //     }
-    //     logData()
-
-    // },[emailDebounce,passwordDebounce])
 
 
     const handelSubmit= async (e)=>{
@@ -44,7 +26,8 @@ const Login = () => {
                     password:passwordDebounce,
                 })
                 console.log(responce.data.token)
-                localStorage.setItem('token',responce.data.token)
+                // localStorage.setItem('token',responce.data.token)
+                login(responce.data.token)
 
                 setEmail('')
                 setPassword('')

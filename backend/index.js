@@ -51,9 +51,9 @@ app.post('/login',async(req,res)=>{
             const logOk= await User.findOne({email,password})
             console.log(logOk)
             if(logOk){
-                const token=jwt.sign({email:logOk.email},key,{expiresIn:'1h'})
+                const token=jwt.sign({email:logOk.email,userId:logOk._id},key,{expiresIn:'1h'})
                 // res.status(200).send('Log in')
-                res.json({token,email:logOk.email})
+                res.json({token,email:logOk.email,userId:logOk._id})
             }else{
                 res.status(401).send('User not found')
             }
