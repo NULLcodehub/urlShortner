@@ -66,13 +66,15 @@ app.post('/login',async(req,res)=>{
 
 app.post('/shortenurl',async(req,res)=>{
     try{
-        const {originalUrl}=req.body
+        const {originalUrl,userToken}=req.body
+        const userId=userToken.userId
+        console.log(userId)
         const shortUrl=shortID.generate()
 
-        const newUrl=new Url({originalUrl,shortUrl})
+        const newUrl=new Url({originalUrl,shortUrl,userID:userId})
         await newUrl.save()
         console.log(newUrl)
-        res.status(200).send('New Url saved')
+        res.status(200).json({originalUrl,shortUrl})
 
     }catch(err){
         res.status(400).send(err.massage)

@@ -13,7 +13,7 @@ import { AuthContext } from './contexts/AuthContext'
 function App() {
 
   const {isAuth}=useContext(AuthContext)
-  console.log(isAuth)
+  // console.log(isAuth)
 
   return (
     <>
