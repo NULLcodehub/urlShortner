@@ -3,16 +3,18 @@ import './UrlForm.css'
 import useDebounce from '../../hooks/Debouncing';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/dataListContext';
 
 const UrlForm = () => {
    
         const {tokenData}=useContext(AuthContext)
+        const { addDataToList,load } = useContext(DataContext);
         const [originalurlData,setOriginalUrlData]=useState(null)
         const [shortUrlData,setShortUrlData]=useState(null)
         const [urlOk,setUrlOk]=useState(false)
-
+        // const [data,setData]=useState(null)
     // console.log(tokenData)
-
+    // console.log(load)
     const [originalUrl,setOriginalurl]=useState('')
     const urlDebounded=useDebounce(originalUrl,500)
 
@@ -25,9 +27,11 @@ const UrlForm = () => {
                     originalUrl:urlDebounded,
                     userToken:tokenData,
                 })
-                setOriginalUrlData(responce.data.originalUrl)
-                setShortUrlData(responce.data.shortUrl)
-                console.log(responce.data)
+                setOriginalUrlData(responce.data.newUrl.originalUrl)
+                setShortUrlData(responce.data.newUrl.shortUrl)
+                console.log(responce.data.newUrl)
+                // setData(responce.data.newUrl)
+                // addDataToList(load)
                 setOriginalurl('')
                 if(responce){
                     setUrlOk(true)
@@ -37,8 +41,11 @@ const UrlForm = () => {
             console.log(err)
         }
 
-        
     }
+
+    
+        
+
 
 
     return (

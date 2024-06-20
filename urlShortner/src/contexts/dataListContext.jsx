@@ -1,0 +1,24 @@
+import React, { createContext, useState } from 'react';
+
+export const DataContext = createContext();
+
+export const DataProvider = ({ children }) => {
+    const [dataList, setDataList] = useState([]);
+    
+    var load=(callback)=>{
+        callback()
+    };
+
+    const addDataToList = () => {
+        console.log('from context')
+        load()
+        
+        
+    };
+
+    return (
+        <DataContext.Provider value={{ dataList, addDataToList,load }}>
+            {children}
+        </DataContext.Provider>
+    );
+};

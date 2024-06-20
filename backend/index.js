@@ -13,7 +13,7 @@ const app=express()
 
 app.use(express.json())
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({credentials: true}))
 
 
 const key=process.env.SCERECT_KEY
@@ -51,7 +51,7 @@ app.post('/login',async(req,res)=>{
             const logOk= await User.findOne({email,password})
             console.log(logOk)
             if(logOk){
-                const token=jwt.sign({email:logOk.email,userId:logOk._id},key,{expiresIn:'1h'})
+                const token=jwt.sign({email:logOk.email,userId:logOk._id,username:logOk.username},key,{expiresIn:'1h'})
                 // res.status(200).send('Log in')
                 res.json({token,email:logOk.email,userId:logOk._id})
             }else{
@@ -73,8 +73,8 @@ app.post('/shortenurl',async(req,res)=>{
 
         const newUrl=new Url({originalUrl,shortUrl,userID:userId})
         await newUrl.save()
-        console.log(newUrl)
-        res.status(200).json({originalUrl,shortUrl})
+        // console.log(newUrl)
+        res.status(200).json({newUrl})
 
     }catch(err){
         res.status(400).send(err.massage)
@@ -85,7 +85,7 @@ app.get('/:shortUrl',async (req,res)=>{
     try{
         const {shortUrl}=req.params
         const urlData=await Url.findOne({shortUrl})
-        console.log(urlData)
+        // console.log(urlData)
         if(urlData){
             res.status(201).send(urlData.originalUrl)
         }else{
@@ -99,6 +99,45 @@ app.get('/:shortUrl',async (req,res)=>{
 
 })
 
+
+app.post('/allurl', async (req, res) => {
+    const {token} = req.body;
+
+    // console.log(token)
+
+    if (!token) {
+        return res.status(401).json({ message: 'No token provided' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, key); 
+        const userId = decoded.userId;
+
+        const allUrls = await Url.find({ userID: userId });
+        res.json({ allUrls });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+app.delete('/:id',async (req,res)=>{
+
+    const {id}=req.params
+
+    try{
+        const deleteUrl=await Url.findByIdAndDelete(id)
+        if(deleteUrl){
+            res.json({massage:'Delete succesfully'})
+        }else[
+            res.json({massage:"url not found"})
+        ]
+        
+    }catch(err){
+        res.status(400).json({msg:"internal server error"})
+    }
+})
 
 app.get('/',(req,res)=>{
     res.json("msg: backend running")
