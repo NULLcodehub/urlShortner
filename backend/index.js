@@ -76,7 +76,7 @@ app.post('/shortenurl',async(req,res)=>{
         const {originalUrl,userToken}=req.body
         const userId=userToken.userId
         console.log(userId)
-        const shortUrl=shortID.generate()
+        const shortUrl=shortID.generate().slice(0,7)
 
         const newUrl=new Url({originalUrl,shortUrl,userID:userId})
         await newUrl.save()

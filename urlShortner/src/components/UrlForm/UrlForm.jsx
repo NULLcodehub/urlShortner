@@ -50,9 +50,10 @@ const UrlForm = () => {
 
     return (
         <>
-            <section className=' flex-col gap-2 px-3 '>
-
+            <section className=' flex-col gap-2 px-4 '>
+            
             <form  onSubmit={handleUrl}  className='w-full'>
+                <h1 className='py-4 text-gray-600 text-20px'>Streamline Your Links: Transform Long URLs into Short and Professional Links</h1>
                 <input 
                 type="text" 
                 className='w-full rounded-md h-12 border-2 px-5' 
