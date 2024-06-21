@@ -5,15 +5,13 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
     const [dataList, setDataList] = useState([]);
     
-    var load=(callback)=>{
-        callback()
+    const load=()=>{
+        
     };
+    console.log(load)
 
     const addDataToList = () => {
         console.log('from context')
-        load()
-        
-        
     };
 
     return (

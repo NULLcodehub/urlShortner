@@ -35,7 +35,14 @@ app.post('/signup',async (req,res)=>{
          
         const newUser=new User({username,email,password})
         await newUser.save();
-        res.status(201).send('New User Created');
+        if (newUser){
+            const token=jwt.sign({email:newUser.email,userId:newUser._id,username:newUser.username},key,{expiresIn:'1h'})
+                // res.status(200).send('Log in')
+            res.json({token,email:newUser.email,userId:newUser._id})
+        }else{
+            res.status(401).send('User not found')
+        }
+        // res.status(201).send('New User Created');
         
     }catch(err){
         res.status(400).send(err.massage);
@@ -81,13 +88,14 @@ app.post('/shortenurl',async(req,res)=>{
     }
 })
 
-app.get('/:shortUrl',async (req,res)=>{
+app.get('/api/:shortUrl',async (req,res)=>{
     try{
         const {shortUrl}=req.params
         const urlData=await Url.findOne({shortUrl})
         // console.log(urlData)
         if(urlData){
-            res.status(201).send(urlData.originalUrl)
+            // res.status(201).send(urlData.originalUrl)
+            res.redirect(urlData.originalUrl)
         }else{
             res.status(400).send('url not found')
         }

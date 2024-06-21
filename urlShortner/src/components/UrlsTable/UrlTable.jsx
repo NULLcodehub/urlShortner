@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import axios from 'axios';
 import { DataContext } from '../../contexts/dataListContext';
+
+import './UserTable.css'
+
+import { MdDelete } from "react-icons/md";
 const UrlTable = () => {
     const { tokenData } = useContext(AuthContext);
     const [urlData, setUrlData] = useState([]);
@@ -28,7 +32,7 @@ const UrlTable = () => {
             
             loadUrls();
 
-            // load(loadUrls)
+            load=loadUrls()
 
             // const  intervel=setInterval(loadUrls,1000)
             
@@ -57,18 +61,18 @@ const UrlTable = () => {
     // console.log(dataList)
     return (
         <div className=''>
-            <h2>URLs</h2>
             
-                <div >
+            
+                <div className=''>
                     {urlData.map((url) => (
-                        <div key={url._id} className=' md:flex border-2 overflow-y-auto p-4 my-2  rounded-md'>
+                        <div key={url._id} className=' md:flex  overflow-y-auto p-4 my-2  rounded-md urlTable' >
                             <ul className='w-11/12'>
-                                <li className='border-b-2 py-2'><span>Short Url : </span>{url.shortUrl}</li>
-                                <li><span>Original url : </span>{url.originalUrl}</li>
-                                <p className='text-10px'>{url.UrlCreateDate}</p> 
+                                <li className='py-3'><span>Short Url : <a href={`http://localhost:4000/api/${url.shortUrl}`} target='blank' className=' text-indigo-500'>{url.shortUrl}</a></span></li>
+                                <li className=' text-gray-600 text-15px'><span>Original url : </span>{url.originalUrl}</li>
+                                <p className='text-13px text-gray-500'>{url.UrlCreateDate}</p> 
                             </ul>
-                            <div className='my-4 flex w-1/12 justify-center  items-center  ' onClick={()=>handleDelete(url._id)}>
-                                <span>Delete</span>
+                            <div className='my-4 flex w-1/12 justify-center  items-center border-l-2 delete  ' onClick={()=>handleDelete(url._id)}>
+                                <span><MdDelete className='h-7 w-7 text-red-500 delete' /> </span>
                             </div>
 
                            

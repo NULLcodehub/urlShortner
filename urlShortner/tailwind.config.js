@@ -5,6 +5,9 @@ export default{
     extend: {
       fontSize:{
         "10px":"10px",
+        "13px":"13px",
+        "15px":"15px",
+
         "20px":"20px",
         '30px':'30px',
         '40px':'40px',

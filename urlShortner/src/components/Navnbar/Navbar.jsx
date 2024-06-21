@@ -8,9 +8,10 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='flex justify-around my-5'>
+        <div className=''>
+            <nav className='flex justify-around my-5 bg-white py-4 mt-0 '>
                 <section>
-                    <div className='text-xl'>Dwarf Links</div>
+                    <div className='text-xl title'><Link to='/'>Dwarf Links</Link></div>
                 </section>
                 <section>
                     <div>
@@ -23,6 +24,8 @@ const Navbar = () => {
                     </div>
                 </section>
             </nav>
+        </div>
+            
         
         </>
     );

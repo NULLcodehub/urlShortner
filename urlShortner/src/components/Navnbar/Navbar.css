@@ -1,5 +1,13 @@
+
+
 nav .signup{
     border: 2px solid rgb(32, 32, 32);
     background:#ABFC33;
     border-radius: 5px;
+}
+
+.title{
+    font-family: "Nova Oval", system-ui;
+    font-weight: 800;
+    font-style: normal;
 }

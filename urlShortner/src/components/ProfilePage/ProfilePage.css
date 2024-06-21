@@ -1,0 +1,21 @@
+.tableScroll{
+    
+}
+::-webkit-scrollbar {
+    width: 1px;  /* Width of the vertical scrollbar */
+    height: 1px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Make the track transparent */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(247, 247, 247, 0.178); /* Semi-transparent thumb */
+    border-radius: 6px; /* Rounded corners for the thumb */
+}
+
+/* Add hover effect for the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(236, 236, 236, 0.7); /* Darker semi-transparent thumb on hover */
+}

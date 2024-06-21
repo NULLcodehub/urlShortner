@@ -31,7 +31,7 @@ const UrlForm = () => {
                 setShortUrlData(responce.data.newUrl.shortUrl)
                 console.log(responce.data.newUrl)
                 // setData(responce.data.newUrl)
-                // addDataToList(load)
+                addDataToList()
                 setOriginalurl('')
                 if(responce){
                     setUrlOk(true)
@@ -66,13 +66,15 @@ const UrlForm = () => {
                 <button  className='px-2 py-1 urlbutton rounded-md w-full my-2 '>Short</button>
             </form>
 
-                {urlOk && <p className='text-center my-2'>Your short url is ready</p>}
+                {urlOk && <p className='text-center my-2 Oktext'>Your short url is ready</p>}
 
                 {urlOk &&
 
-                    <div>
-                        <p className=' overflow-hidden mx-3'>{originalurlData}</p>
-                        <p className='overflow-hidden mx-3 my-3 py-1 border-t-2'>{shortUrlData}</p>
+                    <div className='border-2 p-5 rounded-lg my-10 '>
+                        
+                        <a href={`http://localhost:4000/api/${shortUrlData}`} target='blank'><p className='overflow-hidden mx-3   text-indigo-500' >{shortUrlData}</p></a>
+                        {/* <p className=' overflow-hidden mx-3 text-gray-700'>{originalurlData}</p> */}
+                        
                     </div>
                 
                 }

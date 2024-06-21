@@ -49,10 +49,10 @@ const Login = () => {
 
             <section className='h-screen flex justify-center  my-16 '>
                 
-                <div className='w-full h-fit md:w-4/12 formClass'>
+                <div className='w-full h-fit md:w-4/12 formClass bg-white'>
                     <form action="" onSubmit={handelSubmit} className='p-10'>
                         <div className='text-center'>
-                            <h1 className='text-3xl mb-5'>Log in</h1>
+                            <h1 className='text-3xl mb-5 title'>Dwarf Link</h1>
                         </div>
                         <div className='flex flex-col gap-5'>
                             <input type="email"
@@ -74,7 +74,7 @@ const Login = () => {
                             
                         </div>
                         <div>
-                            <button className='w-full border-2 rounded-md border-black my-5 h-10'>Login</button>
+                            <button className='w-full  rounded-md  my-5 h-10'>Login</button>
                         </div>
 
                     </form>
