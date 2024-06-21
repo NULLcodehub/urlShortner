@@ -22,3 +22,8 @@ Welcome to the URL Shortener App! This application provides a simple and efficie
 
 # ERD of URL-Shortener
 ![urlShortner](https://github.com/NULLcodehub/urlShortner/assets/94992938/dcf3144a-5dd2-40b4-978a-50b1685a2bf8)
+
+
+![homepage](https://github.com/NULLcodehub/urlShortner/assets/94992938/99d7c612-6e4b-4b2c-8bbd-59caca5fdc6d)
+
+![Screenshot 2024-06-21 223912](https://github.com/NULLcodehub/urlShortner/assets/94992938/bd7add95-6114-4d7d-9956-6c9529c74e5d)
