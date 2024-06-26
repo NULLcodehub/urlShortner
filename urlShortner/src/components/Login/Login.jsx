@@ -93,6 +93,8 @@ const Login = () => {
                             </button>
                         </div>
 
+                        <p className='text-xs text-gray-400 text-center'>Login as guest: username: guestuser ,  pass: 19208# </p>
+
                     </form>
                 </div>
                 
