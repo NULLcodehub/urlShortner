@@ -3,6 +3,7 @@ import useDebounce from '../../hooks/Debouncing';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 
 const Signup = () => {
 
@@ -14,27 +15,36 @@ const Signup = () => {
     const emailDebounced=useDebounce(email,500)
     const passwordDebounced=useDebounce(password,500)
 
+    const [loading,setLoading]=useState(false)
+
     const {login}=useContext(AuthContext)
 
     const navigate=useNavigate()
+
     const handelSignUp= async (e)=>{
         e.preventDefault();
-
+        setLoading(true)
         try{
             const responce=await axios.post('https://dwarf-opal.vercel.app/signup',{
                 username:nameDebounced,
                 email:emailDebounced,
                 password:passwordDebounced,
             })
-            console.log(responce)
-            login(responce.data.token)
-            setEmail('')
-            setName('')
-            setPassword('')
-            navigate('/')
+            if(responce){
+                console.log(responce)
+                login(responce.data.token)
+                setEmail('')
+                setName('')
+                setPassword('')
+                navigate('/')
+                
+            }
+            
 
         }catch(err){
             console.log(err)
+            alert('somthing is wrong try again after few time')
+            setLoading(false)
         }
 
 
@@ -55,6 +65,7 @@ const Signup = () => {
                                 className=' px-3 border-2 border-black rounded-md ' 
                                 placeholder='Full name'
                                 value={name}
+                                required
                                 onChange={e=>setName(e.target.value)}
                                 
                               />
@@ -62,6 +73,7 @@ const Signup = () => {
                             <input type="email"
                                 className=' px-3 border-2 border-black rounded-md ' 
                                 placeholder='yourmail@email.com'
+                                required
                                 value={email}
                                 onChange={e=>setEmail(e.target.value)}
                                 
@@ -69,6 +81,7 @@ const Signup = () => {
                             <input type="password"
                                 className='px-3 border-2 border-black rounded-md'
                                 placeholder='password' 
+                                required
                                 value={password}
                                 onChange={e=>setPassword(e.target.value)}
                                 
@@ -77,7 +90,13 @@ const Signup = () => {
                             
                         </div>
                         <div>
-                            <button className='w-full rounded-md  my-5 h-10'>Sign up</button>
+                            <button className='w-full rounded-md  my-5 h-10'>
+                                {
+                                    loading ? <ClipLoader size={20} color={'black'}/>: 'Sign Up'
+
+                                }
+                                
+                                </button>
                         </div>
 
                     </form>

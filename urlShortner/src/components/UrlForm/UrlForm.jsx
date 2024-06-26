@@ -4,6 +4,7 @@ import useDebounce from '../../hooks/Debouncing';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
 import { DataContext } from '../../contexts/dataListContext';
+import { ClipLoader } from 'react-spinners';
 
 const UrlForm = () => {
    
@@ -13,13 +14,17 @@ const UrlForm = () => {
         const [shortUrlData,setShortUrlData]=useState(null)
         const [urlOk,setUrlOk]=useState(false)
         // const [data,setData]=useState(null)
-    // console.log(tokenData)
-    // console.log(load)
+        // console.log(tokenData)
+        // console.log(load)
+
+        const [loading,setLoading]=useState(false)
+
     const [originalUrl,setOriginalurl]=useState('')
     const urlDebounded=useDebounce(originalUrl,500)
 
     const handleUrl= async (e)=>{
         e.preventDefault()
+        setLoading(true)
         try{
 
             const responce=await axios.post('https://dwarf-opal.vercel.app/shortenurl',
@@ -35,6 +40,7 @@ const UrlForm = () => {
                 setOriginalurl('')
                 if(responce){
                     setUrlOk(true)
+                    setLoading(false)
                 }
 
         }catch(err){
@@ -64,7 +70,9 @@ const UrlForm = () => {
                 
                 
                 />
-                <button  className='px-2 py-1 urlbutton rounded-md w-full my-2 '>Short</button>
+                <button  className='px-2 py-1 urlbutton rounded-md w-full my-2 '>
+                    {loading ? <ClipLoader size={20} color={'black'}/> : "Short"}
+                    </button>
             </form>
 
                 {urlOk && <p className='text-center my-2 Oktext'>Your short url is ready</p>}

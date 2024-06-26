@@ -3,6 +3,7 @@ import useDebounce from '../../hooks/Debouncing';
 import axios from 'axios'
 import { AuthContext } from '../../contexts/AuthContext';
 import {useNavigate} from 'react-router-dom'
+import {ClipLoader} from 'react-spinners'
 
 import './Login.css'
 const Login = () => {
@@ -10,6 +11,8 @@ const Login = () => {
     const [password,setPassword]=useState("")
     const emailDebounce=useDebounce(email,500)
     const passwordDebounce=useDebounce(password,500)
+
+    const [loading,setLoading]=useState(false)
 
     const {login}=useContext(AuthContext)
 
@@ -19,7 +22,7 @@ const Login = () => {
 
     const handelSubmit= async (e)=>{
         e.preventDefault()
-
+        setLoading(true)
         if(emailDebounce || passwordDebounce){
 
             try{ 
@@ -27,16 +30,22 @@ const Login = () => {
                     email:emailDebounce,
                     password:passwordDebounce,
                 })
+
+                if(responce){
+                    login(responce.data.token)
+
+                    setEmail('')
+                    setPassword('') 
+                    navigate('/')
+                }
                 // console.log(responce.data.token)
                 // localStorage.setItem('token',responce.data.token)
-                login(responce.data.token)
-
-                setEmail('')
-                setPassword('') 
-                navigate('/')
+                
 
             }catch(err){
                 console.log(err)
+                alert('Wrong Email and Password')
+                setLoading(false)
             }
 
            
@@ -58,6 +67,7 @@ const Login = () => {
                             <input type="email"
                                 className=' px-3 border-2 border-black rounded-md ' 
                                 placeholder='yourmail@email.com'
+                                required
                                 value={email}
                                 onChange={(e)=>setEmail(e.target.value)}
                               
@@ -66,6 +76,7 @@ const Login = () => {
                             <input type="password"
                                 className='px-3 border-2 border-black rounded-md'
                                 placeholder='password' 
+                                required
                                 value={password}
                                 onChange={(e)=>setPassword(e.target.value)}
                                 
@@ -74,7 +85,12 @@ const Login = () => {
                             
                         </div>
                         <div>
-                            <button className='w-full  rounded-md  my-5 h-10'>Login</button>
+                            <button className='w-full  rounded-md  my-5 h-10'>
+                                {
+                                    loading ? <ClipLoader size={20} color={"black"}/>: 'Log In'
+                                }
+
+                            </button>
                         </div>
 
                     </form>
