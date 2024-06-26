@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import useDebounce from '../../hooks/Debouncing';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -16,6 +16,7 @@ const Signup = () => {
 
     const {login}=useContext(AuthContext)
 
+    const navigate=useNavigate()
     const handelSignUp= async (e)=>{
         e.preventDefault();
 
@@ -30,7 +31,7 @@ const Signup = () => {
             setEmail('')
             setName('')
             setPassword('')
-            Navigate('/')
+            navigate('/')
 
         }catch(err){
             console.log(err)
