@@ -71,13 +71,20 @@ const UrlForm = () => {
 
                 {urlOk &&
 
-                    <div className='border-2 p-5 rounded-lg my-10 '>
+                    <div className='border-2 p-5 rounded-lg mt-10 '>
                         
-                        <a href={`https://dwarf-opal.vercel.app/api/${shortUrlData}`} target='blank'><p className='overflow-hidden mx-3   text-indigo-500' >{shortUrlData}</p></a>
+                        <a href={`https://dwarf-opal.vercel.app/${shortUrlData}`} target='blank'><p className='overflow-hidden mx-3   text-indigo-500' >{shortUrlData}</p></a>
                         {/* <p className=' overflow-hidden mx-3 text-gray-700'>{originalurlData}</p> */}
                         
                     </div>
                 
+                }
+                {
+                    urlOk && 
+                    <>
+                        <p className='text-xs mt-4 text-gray-600'>Clink on the link or copy this " <u> https://dwarf-opal.vercel.app/{`${shortUrlData}`} </u> " </p>
+                    
+                    </>
                 }
                 
             </section>
