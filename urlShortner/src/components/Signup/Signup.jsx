@@ -20,7 +20,7 @@ const Signup = () => {
         e.preventDefault();
 
         try{
-            const responce=await axios.post('http://localhost:4000/signup',{
+            const responce=await axios.post('https://dwarf-opal.vercel.app/signup',{
                 username:nameDebounced,
                 email:emailDebounced,
                 password:passwordDebounced,

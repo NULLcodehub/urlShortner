@@ -16,7 +16,7 @@ const UrlTable = () => {
     useEffect(() => {
         const loadUrls = async () => {
             try {
-                const response = await axios.post('http://localhost:4000/allurl', {
+                const response = await axios.post('https://dwarf-opal.vercel.app/allurl', {
                    token:token
                 });
                 console.log(response);
@@ -48,7 +48,7 @@ const UrlTable = () => {
     const handleDelete= async (deletUrl)=>{
 
         try{
-            const deletResponce=await axios.delete(`http://localhost:4000/${deletUrl}`)
+            const deletResponce=await axios.delete(`https://dwarf-opal.vercel.app/${deletUrl}`)
             console.log(deletResponce.data)
             setUrlData(urlData.filter(url=> url._id !=deletUrl))
         }catch(err){
@@ -78,7 +78,7 @@ const UrlTable = () => {
                     {urlData.map((url) => (
                         <div key={url._id} className=' md:flex  overflow-y-auto p-4 my-2  rounded-md urlTable' >
                             <ul className='w-11/12'>
-                                <li className='py-3'><span>Short Url : <a href={`http://localhost:4000/api/${url.shortUrl}`} target='blank' className=' text-indigo-500'>{url.shortUrl}</a></span></li>
+                                <li className='py-3'><span>Short Url : <a href={`https://dwarf-opal.vercel.app/api/${url.shortUrl}`} target='blank' className=' text-indigo-500'>{url.shortUrl}</a></span></li>
                                 <li className=' text-gray-600 text-15px overflow-x-auto'><span className='font-semibold'>Original url : </span>{url.originalUrl}</li>
                                 <p className='text-13px text-gray-500'>{
                                 

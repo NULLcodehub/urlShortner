@@ -22,7 +22,7 @@ const UrlForm = () => {
         e.preventDefault()
         try{
 
-            const responce=await axios.post('http://localhost:4000/shortenurl',
+            const responce=await axios.post('https://dwarf-opal.vercel.app/shortenurl',
                 {
                     originalUrl:urlDebounded,
                     userToken:tokenData,
@@ -73,7 +73,7 @@ const UrlForm = () => {
 
                     <div className='border-2 p-5 rounded-lg my-10 '>
                         
-                        <a href={`http://localhost:4000/api/${shortUrlData}`} target='blank'><p className='overflow-hidden mx-3   text-indigo-500' >{shortUrlData}</p></a>
+                        <a href={`https://dwarf-opal.vercel.app/api/${shortUrlData}`} target='blank'><p className='overflow-hidden mx-3   text-indigo-500' >{shortUrlData}</p></a>
                         {/* <p className=' overflow-hidden mx-3 text-gray-700'>{originalurlData}</p> */}
                         
                     </div>
