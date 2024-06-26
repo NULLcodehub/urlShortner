@@ -90,7 +90,7 @@ const UrlForm = () => {
                 {
                     urlOk && 
                     <>
-                        <p className='text-xs mt-4 text-gray-600'>Clink on the link or copy this " <u> https://dwarf-opal.vercel.app/{`${shortUrlData}`} </u> " </p>
+                        <p className='text-xs mt-4 text-gray-600'>Click on the above link or copy this " <u> https://dwarf-opal.vercel.app/{`${shortUrlData}`} </u> " </p>
                     
                     </>
                 }
